@@ -13,26 +13,15 @@ eureka:
   server:
     wait-time-in-ms-when-sync-empty: 3000
 
-security:
-    oauth2:
-        client:
-            access-token-validity-seconds: 1800
-            authorized-grant-types: password,refresh_token
-            client-id: coderef
-            client-secret: $2a$10$p9Pk0fQNAQSesI4vuvKA0OZanDD2
-            resource-ids: resources
-            scope: read,write
-
 spring:
-    datasource:
-        driver-class-name: com.mysql.jdbc.Driver
-        password: '1234'
-        platform: mysql
-        url: jdbc:mysql://localhost:3306/oauth?verifyServerCertificate=false&useSSL=false&requireSSL=false
-        username: root
-    jpa:
-        database-platform: org.hibernate.dialect.MySQLDialect
-        generate-ddl: false
-        hibernate:
-            ddl-auto: none
-        show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: '/h2-console'
+  datasource:
+    url: jdbc:h2:mem:projeto
+
+security:
+  oauth2:
+    resource:
+      id: bcrypt
